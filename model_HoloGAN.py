@@ -63,8 +63,8 @@ class HoloGAN(object):
 
     if str.lower(str(cfg["style_disc"])) == "true":
         print("Style Disc")
-        print("INPUT_SHAPE : ", tf.shape(inputs))
-        print("Generated_image_input_shape : ", tf.shape(self.G))
+        print("INPUT_SHAPE : ", inputs.get_shape())
+        print("Generated_image_input_shape : ", self.G.get_shape())
         self.D, self.D_logits, _, self.d_h1_r, self.d_h2_r, self.d_h3_r, self.d_h4_r = dis_func(inputs, cont_dim=cfg['z_dim'], reuse=False)
         self.D_, self.D_logits_, self.Q_c_given_x, self.d_h1_f, self.d_h2_f, self.d_h3_f, self.d_h4_f = dis_func(self.G, cont_dim=cfg['z_dim'], reuse=True)
 
