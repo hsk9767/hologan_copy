@@ -12,7 +12,7 @@
   "beta1":0.5,
   "beta2":0.999,
   "discriminator":"discriminator_IN_style_res128",
-  "generator":"generator_AdaIN128",
+  "generator":"generator_AdaIN_res128",
   "view_func":"generate_random_rotation_translation",
   "train_func":"train_HoloGAN",
   "build_func":"build_HoloGAN",
