@@ -237,6 +237,14 @@ def tf_rotation_resampling(voxel_array, transformation_matrix, params, Scale_mat
         grid = tf_voxel_meshgrid(new_size, new_size, new_size, homogeneous=True)
         grid = tf.tile(tf.reshape(grid, (1, tf.to_int32(grid.get_shape()[0]) , tf.to_int32(grid.get_shape()[1]))), [batch_size, 1, 1])
         grid_transform = tf.matmul(total_M, grid)
+        
+        
+        print("grid : " , grid)
+        print("grid_size : ", tf.shape(grid))
+        print("total_M : ", total_M)
+        print("total_M_size : ", tf.shape(total_M))
+        
+        
         x_s_flat = tf.reshape(grid_transform[:, 0, :], [-1])
         y_s_flat = tf.reshape(grid_transform[:, 1, :], [-1])
         z_s_flat = tf.reshape(grid_transform[:, 2, :], [-1])
