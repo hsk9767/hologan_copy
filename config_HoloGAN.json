@@ -2,7 +2,10 @@
   "image_path":"./celebA",
   "gpu":0,
   "batch_size":32,
-  "max_epochs":50,
+  
+  //"max_epochs":50,
+  "max_epochs":1,
+  
   "epoch_step":25,
   "z_dim":128,
   "d_eta":0.0001,
