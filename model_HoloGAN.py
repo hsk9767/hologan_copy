@@ -164,7 +164,7 @@ class HoloGAN(object):
           print(" [*] Load SUCCESS")
       else:
           print(" [!] Load failed...")
-
+      print("end?")
       self.data = glob.glob(os.path.join(IMAGE_PATH, self.input_fname_pattern))
       d_lr = cfg['d_eta']
       g_lr = cfg['g_eta']
