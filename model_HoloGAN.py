@@ -410,6 +410,7 @@ class HoloGAN(object):
           return tf.nn.sigmoid(h5), h5, tf.nn.tanh(cont_vars), d_h1_logits, d_h2_logits, d_h3_logits, d_h4_logits
 
   def generator_AdaIN(self, z, view_in, reuse=False):
+      print("GENERATOR_ADAIN\n")
       batch_size = tf.shape(z)[0]
       s_h, s_w, s_d = 64, 64, 64
       s_h2, s_w2, s_d2 = conv_out_size_same(s_h, 2), conv_out_size_same(s_w, 2), conv_out_size_same(s_d, 2)
@@ -465,6 +466,7 @@ class HoloGAN(object):
           return output
 
   def generator_AdaIN_res128(self, z, view_in, reuse=False):
+      print("GENERATOR_ADAIN128\n")
       batch_size = tf.shape(z)[0]
       s_h, s_w, s_d = 64, 64, 64
       s_h2, s_w2, s_d2 = conv_out_size_same(s_h, 2), conv_out_size_same(s_w, 2), conv_out_size_same(s_d, 2)
