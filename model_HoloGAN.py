@@ -166,11 +166,9 @@ class HoloGAN(object):
           print(" [!] Load failed...")
 
       self.data = glob.glob(os.path.join(IMAGE_PATH, self.input_fname_pattern))
-      print("end1")
       d_lr = cfg['d_eta']
       g_lr = cfg['g_eta']
       for epoch in range(cfg['max_epochs']):
-          print("end2")
           d_lr = d_lr if epoch < cfg['epoch_step'] else d_lr * (cfg['max_epochs'] - epoch) / (cfg['max_epochs'] - cfg['epoch_step'])
           g_lr = g_lr if epoch < cfg['epoch_step'] else g_lr * (cfg['max_epochs'] - epoch) / (cfg['max_epochs'] - cfg['epoch_step'])
 
