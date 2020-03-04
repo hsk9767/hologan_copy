@@ -54,11 +54,13 @@ class HoloGAN(object):
     self.inputs = tf.placeholder(tf.float32, [None, self.output_height, self.output_width, self.c_dim], name='real_images')
     self.z = tf.placeholder(tf.float32, [None, cfg['z_dim']], name='z')
     inputs = self.inputs
-
+    
+    print("GEN_FUNC!")
     gen_func = eval("self." + (cfg['generator']))
     dis_func = eval("self." + (cfg['discriminator']))
     self.gen_view_func = eval(cfg['view_func'])
-
+    
+    print("SELF.G!")
     self.G = gen_func(self.z, self.view_in)
 
     if str.lower(str(cfg["style_disc"])) == "true":
