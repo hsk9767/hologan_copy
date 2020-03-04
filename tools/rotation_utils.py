@@ -3,6 +3,13 @@ import numpy as np
 import math
 import time
 
+def sRun(input):
+  with tf.Session() as sess:
+    sess.run(tf.global_variables_initializer())
+    rst = input.eval()
+    # print(rst)
+    return rst
+
 def tf_repeat(x, n_repeats):
     #Repeat X for n_repeats time along 0 axis
     #Return a 1D tensor of total number of elements
@@ -229,22 +236,24 @@ def tf_rotation_resampling(voxel_array, transformation_matrix, params, Scale_mat
         tf.concat([zeros, zeros, zeros, ones], axis=2)], axis=1)
     total_M = tf.matmul(tf.matmul(tf.matmul(tf.matmul(T_new_inv, T_translate), Scale_matrix), transformation_matrix), T)
 
-    print("PASS HERE")
-    print("Total_M : ", total_M) 
     try:
         total_M = tf.matrix_inverse(total_M)
 
         total_M = total_M[:, 0:3, :] #Ignore the homogenous coordinate so the results are 3D vectors
         grid = tf_voxel_meshgrid(new_size, new_size, new_size, homogeneous=True)
+        
+        grid_ex = sRun(tf.identity(grid))
+        print("Grid_1 : ", grid)
+        print("Grid_1 : ", grid_ex)
+        
+        
         grid = tf.tile(tf.reshape(grid, (1, tf.to_int32(grid.get_shape()[0]) , tf.to_int32(grid.get_shape()[1]))), [batch_size, 1, 1])
-        grid_transform = tf.matmul(total_M, grid)
         
+        grid_ex_2 = sRun(tf.identity(grid))
+        print("Grid_2 : ", grid)
+        print("Grid_2 : ", grid_ex_2)
         
-        print("grid : " , grid)
-        print("grid_size : ", tf.shape(grid))
-        print("total_M : ", total_M)
-        print("total_M_size : ", tf.shape(total_M))
-        
+        grid_transform = tf.matmul(total_M, grid)       
         
         x_s_flat = tf.reshape(grid_transform[:, 0, :], [-1])
         y_s_flat = tf.reshape(grid_transform[:, 1, :], [-1])
