@@ -62,6 +62,7 @@ class HoloGAN(object):
     
     print("SELF.G!")
     self.G = gen_func(self.z, self.view_in)
+    print("SELF.G FINISH")
 
     if str.lower(str(cfg["style_disc"])) == "true":
         print("Style Disc")
