@@ -229,7 +229,8 @@ def tf_rotation_resampling(voxel_array, transformation_matrix, params, Scale_mat
         tf.concat([zeros, zeros, zeros, ones], axis=2)], axis=1)
     total_M = tf.matmul(tf.matmul(tf.matmul(tf.matmul(T_new_inv, T_translate), Scale_matrix), transformation_matrix), T)
 
-
+    print("PASS HERE")
+    print("Total_M : ", total_M) 
     try:
         total_M = tf.matrix_inverse(total_M)
 
